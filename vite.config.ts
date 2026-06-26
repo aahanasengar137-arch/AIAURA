@@ -6,10 +6,4 @@ export default defineConfig({
       entry: "server",
     },
   },
-
-  vite: {
-    preview: {
-      allowedHosts: true,
-    },
-  },
 });

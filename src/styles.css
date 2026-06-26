@@ -1,0 +1,212 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-noir: var(--noir);
+  --color-deep: var(--deep);
+  --color-teal: var(--teal);
+  --color-saffron: var(--saffron);
+  --color-forsythia: var(--forsythia);
+  --color-mist: var(--mist);
+  --color-powder: var(--powder);
+}
+
+:root {
+  --radius: 0.875rem;
+
+  /* Uploaded palette */
+  --noir: oklch(0.205 0.026 220);            /* #172B36 Oceanic Noir */
+  --deep: oklch(0.155 0.022 220);            /* deeper than noir for bg */
+  --teal: oklch(0.355 0.045 220);            /* #114C5A Nocturnal */
+  --saffron: oklch(0.745 0.175 55);          /* #FF9932 Deep Saffron */
+  --forsythia: oklch(0.84 0.165 85);         /* #FFC801 Forsythia */
+  --mist: oklch(0.93 0.012 195);             /* #D9E8E2 Mystic Mint */
+  --powder: oklch(0.97 0.005 180);           /* #F1F6F4 Arctic Powder */
+
+  --background: var(--deep);
+  --foreground: var(--powder);
+  --card: oklch(0.225 0.026 220 / 0.6);
+  --card-foreground: var(--powder);
+  --popover: var(--noir);
+  --popover-foreground: var(--powder);
+  --primary: var(--saffron);
+  --primary-foreground: oklch(0.15 0.02 220);
+  --secondary: var(--teal);
+  --secondary-foreground: var(--powder);
+  --muted: oklch(0.255 0.025 220);
+  --muted-foreground: oklch(0.72 0.018 200);
+  --accent: var(--forsythia);
+  --accent-foreground: oklch(0.15 0.02 220);
+  --destructive: oklch(0.62 0.22 25);
+  --destructive-foreground: var(--powder);
+  --border: oklch(0.97 0.005 180 / 0.08);
+  --input: oklch(0.97 0.005 180 / 0.1);
+  --ring: var(--saffron);
+
+  --gradient-hero: radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      color-mix(in oklab, var(--saffron) 22%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 80% 30%,
+      color-mix(in oklab, var(--teal) 55%, transparent),
+      transparent 70%
+    ),
+    linear-gradient(180deg, var(--noir) 0%, var(--deep) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--forsythia), var(--saffron));
+  --gradient-text: linear-gradient(
+    180deg,
+    var(--powder) 0%,
+    color-mix(in oklab, var(--powder) 60%, var(--teal)) 100%
+  );
+  --shadow-glow: 0 0 60px -10px color-mix(in oklab, var(--saffron) 45%, transparent);
+  --shadow-card: 0 30px 80px -30px oklch(0 0 0 / 0.6);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+    background: var(--deep);
+  }
+  body {
+    background: var(--deep);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--saffron) 60%, transparent);
+    color: var(--noir);
+  }
+}
+
+@utility glass {
+  background: color-mix(in oklab, var(--noir) 55%, transparent);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid color-mix(in oklab, var(--powder) 8%, transparent);
+}
+
+@utility text-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+@utility text-gradient {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-saffron-gradient {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-hero {
+  background: var(--gradient-hero);
+}
+
+@utility glow-ring {
+  box-shadow: var(--shadow-glow);
+}
+
+@utility magnetic {
+  transition: transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 200ms ease-out;
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@utility reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) }
+  50% { transform: translateY(-12px) }
+}
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; transform: scale(1) }
+  50% { opacity: 1; transform: scale(1.05) }
+}
+@keyframes grain-shift {
+  0% { background-position: 0 0 }
+  100% { background-position: 200px 200px }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0 }
+  100% { background-position: 200% 0 }
+}
+@keyframes marquee {
+  0% { transform: translateX(0) }
+  100% { transform: translateX(-50%) }
+}
+
+@utility animate-float {
+  animation: float-slow 6s ease-in-out infinite;
+}
+@utility animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+@utility animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px }
+::-webkit-scrollbar-track { background: var(--deep) }
+::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--teal) 80%, transparent);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--saffron);
+}

@@ -6,14 +6,4 @@ export default defineConfig({
       entry: "server",
     },
   },
-
-  server: {
-    host: "0.0.0.0",
-    allowedHosts: ["aiaura.onrender.com"],
-  },
-
-  preview: {
-    host: "0.0.0.0",
-    allowedHosts: ["aiaura.onrender.com"],
-  },
 });
